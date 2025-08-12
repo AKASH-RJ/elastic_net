@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>House Price Prediction</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="utf-8" />
+    <title>House Price Prediction (Elastic Net)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-    <div class="container">
-        <h1>🏠 House Price Prediction</h1>
-        <form method="POST" action="/predict">
-            <label>Area (sqft):</label>
-            <input type="number" name="area" required>
+    <div class="card">
+        <h1>🏠 House Price Predictor</h1>
+        <form method="POST">
+            <div class="row">
+                <label>Area (sqft)</label>
+                <input type="number" name="area" step="any" required />
+            </div>
+            <div class="row">
+                <label>Bedrooms</label>
+                <input type="number" name="bedrooms" required />
+            </div>
+            <div class="row">
+                <label>Bathrooms</label>
+                <input type="number" name="bathrooms" required />
+            </div>
+            <div class="row">
+                <label>Stories</label>
+                <input type="number" name="stories" required />
+            </div>
+            <div class="row">
+                <label>Age (years)</label>
+                <input type="number" name="age" step="any" required />
+            </div>
 
-            <label>Bedrooms:</label>
-            <input type="number" name="bedrooms" required>
-
-            <label>Bathrooms:</label>
-            <input type="number" name="bathrooms" required>
-
-            <label>Stories:</label>
-            <input type="number" name="stories" required>
-
-            <label>Age of House (years):</label>
-            <input type="number" name="age" required>
-
-            <button type="submit">Predict</button>
+            <button type="submit">Predict Price</button>
         </form>
 
         {% if prediction_text %}
-        <h2>{{ prediction_text }}</h2>
+        <div class="result">
+            <p>{{ prediction_text }}</p>
+        </div>
         {% endif %}
     </div>
 </body>
